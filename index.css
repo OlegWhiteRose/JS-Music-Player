@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.player {
+    display: flex;
+    align-items: center;
+
+    position: fixed;
+    width: 100%;
+    height: 83px;
+
+    bottom: 0;   
+    left: 0;
+
+    background-color: black;
+}
+
+.player__song {
+    display: flex;
+    align-items: center;
+
+    img {
+        cursor: pointer;
+        height: 70px;
+        width: 70px;
+    }
+}
+
+.player__song-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .icon {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+    }
+
+    padding-left: 10px;
+}
+
+.player__song-text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 18px;
+    gap: 5px;
+
+    .song-name {
+        font-family: 'Inter';
+        font-weight: bold;
+        user-select: none; 
+        color: white;
+    }
+
+    .artist {
+        font-family: 'Inter';
+        font-weight: 300;
+        user-select: none; 
+        color: white;
+    }
+}
+
+.player__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.player__widgets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.player__controls {
+    display: flex;
+
+    .icon {
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+    }
+ 
+    gap: clamp(10px, 3vw, 39px);
+}
+
+.player__progress-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span {
+        color: white;
+    }
+
+    .rectangle {
+        display: flex;
+        align-items: center;
+
+        .rectangle-prev {
+            width: clamp(100px, 15vw, 210px);
+            height: 2px;
+            background-color: #1F68F2;
+        }
+
+        .circle {
+            cursor: pointer;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: #1F68F2;
+        }
+
+        .rectangle-next {
+            width: clamp(100px, 15vw, 210px);
+            height: 2px;
+            background-color: white;
+        }
+    }
+}
+
+.player__tools {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .icon {
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+    }
+
+    .rectangle-volume {
+        display: flex;
+        align-items: center;
+
+        .rectangle-prev {
+            width: clamp(5px, 2.5vw, 40px);
+            height: 2px;
+            background-color: #1F68F2;
+        }
+
+        .circle {
+            cursor: pointer;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: #1F68F2;
+        }
+
+        .rectangle-next {
+            width: clamp(5px, 2.5vw, 40px);
+            height: 2px;
+            background-color: white;
+        }
+    }
+}
+

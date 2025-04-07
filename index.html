@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="player" id="player">
+        <div class="player__container">
+            <div class="player__song-container">
+                <div class="player__song">
+                    <img src="img/251912_7_sq.jpg">
+                    <div class="player__song-text">
+                        <span class="song-name">Miside main OST</span>
+                        <span class="artist">aihasto</span>
+                    </div>
+                </div>
+                <img src="img/like-active.svg" class="icon">
+                <img src="img/dots.svg" class="icon">
+            </div>
+
+            <div class="player__widgets">
+                <div class="player__controls">
+                    <img src="img/player-shuffle.svg" class="icon">
+                    <img src="img/player-prev.svg" class="icon">
+                    <img src="img/player-play.svg" class="icon">
+                    <img src="img/player-next.svg" class="icon">
+                    <img src="img/player-repeat.svg" class="icon">
+                </div>
+                <div class="player__progress-container">
+                    <span>2:00</span>
+                    <div class="rectangle">
+                        <div class="rectangle-prev"></div>
+                        <div class="circle"></div>
+                        <div class="rectangle-next"></div>
+                    </div>
+                    <span>4:00</span>
+                </div>
+            </div>
+
+            <div class="player__tools">
+                <img class="icon" src="img/volume.svg">
+                <div class="rectangle-volume">
+                    <div class="rectangle-prev"></div>
+                    <div class="circle"></div>
+                    <div class="rectangle-next"></div>
+                </div>
+                <img class="icon" src="img/resize.svg">
+            </div>
+        </div>
+    </div>
+    <audio controls src="lofi-study.mp3"></audio>
+    <script src="index.js"></script>
+</body>
+</html>
