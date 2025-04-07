@@ -6,7 +6,7 @@
 
     position: fixed;
     width: 100%;
-    height: 83px;
+    height: 70px;
 
     bottom: 0;   
     left: 0;
@@ -19,21 +19,21 @@
     align-items: center;
 
     img {
-        cursor: pointer;
-        height: 70px;
-        width: 70px;
+        height: 56px;
+        width: 56px;
+        border-radius: 15%;
     }
 }
 
 .player__song-container {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 1vw;
 
     .icon {
         cursor: pointer;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
     }
 
     padding-left: 10px;
@@ -42,10 +42,11 @@
 .player__song-text {
     display: flex;
     flex-direction: column;
-    padding-left: 18px;
-    gap: 5px;
+    padding-left: 1vw;
+    gap: 0.2vw;
 
     .song-name {
+        font-size: 14px;
         font-family: 'Inter';
         font-weight: bold;
         user-select: none; 
@@ -53,6 +54,7 @@
     }
 
     .artist {
+        font-size: 14px;
         font-family: 'Inter';
         font-weight: 300;
         user-select: none; 
@@ -61,8 +63,8 @@
 }
 
 .player__container {
-    display: flex;
-    justify-content: space-between;
+    display: grid; 
+    grid-template-columns: auto auto auto;
     width: 100%;
 
     padding-left: 10px;
@@ -81,17 +83,17 @@
 
     .icon {
         cursor: pointer;
-        height: 25px;
-        width: 25px;
+        height: 20px;
+        width: 20px;
     }
  
-    gap: clamp(10px, 3vw, 39px);
+    gap: clamp(10px, 2vw, 39px);
 }
 
 .player__progress-container {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 1vw;
 
     span {
         color: white;
@@ -102,7 +104,7 @@
         align-items: center;
 
         .rectangle-prev {
-            width: clamp(100px, 15vw, 210px);
+            width: 140px;
             height: 2px;
             background-color: #1F68F2;
         }
@@ -116,7 +118,7 @@
         }
 
         .rectangle-next {
-            width: clamp(100px, 15vw, 210px);
+            width: 140px;
             height: 2px;
             background-color: white;
         }
@@ -126,12 +128,13 @@
 .player__tools {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: flex-end;
+    gap: 1vw;
 
     .icon {
         cursor: pointer;
-        height: 25px;
-        width: 25px;
+        height: 20px;
+        width: 20px;
     }
 
     .rectangle-volume {
