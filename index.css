@@ -198,7 +198,8 @@ html {
 }
 
 .rectangle:hover .circle,
-.rectangle.dragging .circle {
+.rectangle.dragging .circle,
+.rectangle-volume.dragging .circle {
   display: block;
 }
   
