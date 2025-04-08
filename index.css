@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Days+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+html {
+    --height-progress: 4px;
+    --border-radius-progress: 20px;
+    --width-circle: 10px;
+}
+
 .player {
     display: flex;
     align-items: center;
+    z-index: 900;
 
     position: fixed;
     width: 100%;
@@ -32,6 +39,7 @@
 
     .icon {
         cursor: pointer;
+        user-select: none;
         width: 25px;
         height: 25px;
     }
@@ -83,6 +91,7 @@
 
     .icon {
         cursor: pointer;
+        user-select: none;
         height: 20px;
         width: 20px;
     }
@@ -97,31 +106,40 @@
 
     span {
         color: white;
+        user-select: none;
     }
 
     .rectangle {
         display: flex;
         align-items: center;
+        width: 280px;
+        height: var(--height-progress);
+        border-radius: var(--border-radius-progress);
+        background-color: white;
 
         .rectangle-prev {
-            width: 140px;
-            height: 2px;
+            position: absolute; 
+            width: 0px;
+            height: var(--height-progress);
+            border-radius: var(--border-radius-progress);
             background-color: #1F68F2;
         }
 
         .circle {
-            cursor: pointer;
-            height: 8px;
-            width: 8px;
+            display: none;
+            position: absolute; 
+            height: var(--width-circle);
+            width: var(--width-circle);
             border-radius: 50%;
             background-color: #1F68F2;
         }
+    }
+}
 
-        .rectangle-next {
-            width: 140px;
-            height: 2px;
-            background-color: white;
-        }
+.rectangle:hover {
+    cursor: pointer;
+    .circle {
+        display: block;
     }
 }
 
@@ -133,6 +151,7 @@
 
     .icon {
         cursor: pointer;
+        user-select: none;
         height: 20px;
         width: 20px;
     }
@@ -140,26 +159,48 @@
     .rectangle-volume {
         display: flex;
         align-items: center;
+        background-color: white;
+        height: var(--height-progress);
+        border-radius: var(--border-radius-progress);
+        width: 50px;
 
         .rectangle-prev {
-            width: clamp(5px, 2.5vw, 40px);
-            height: 2px;
+            position: absolute;
+            width: 0px;
+            height: var(--height-progress);
+            border-radius: var(--border-radius-progress);
             background-color: #1F68F2;
         }
 
         .circle {
+            display: none;
             cursor: pointer;
-            height: 8px;
-            width: 8px;
+            height: var(--width-circle);
+            width: var(--width-circle);
             border-radius: 50%;
             background-color: #1F68F2;
         }
+    }
 
-        .rectangle-next {
-            width: clamp(5px, 2.5vw, 40px);
-            height: 2px;
-            background-color: white;
+    .rectangle-volume:hover {
+        cursor: pointer;
+        .circle {
+            display: block;
         }
     }
 }
 
+.player__progress-container .rectangle {
+    position: relative;
+}
+
+.player__progress-container .rectangle-prev,
+.player__progress-container .circle {
+    position: absolute;
+    left: 0;
+}
+.rectangle:hover .circle,
+.rectangle.dragging .circle {
+  display: block;
+}
+  

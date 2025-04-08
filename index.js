@@ -1,6 +1,9 @@
-import MusicPlayer from "./player.js";
+import musicPlayer from './player.js';
 
 const audio = document.querySelector('audio');
-const player = document.getElementById('player');
+const playerContainer = document.getElementById('player');
 
-const musicPlayer = new MusicPlayer(audio, player);
+musicPlayer.audio = audio;
+musicPlayer.player = playerContainer;
+musicPlayer.initHTMLElements();
+
