@@ -7,11 +7,23 @@ class MusicPlayer {
         this.initStates();
     }
 
+    initStates() {
+        this.isFullscreen = false;
+        this.audioLevel = 0.4; 
+        this.isPlaying = false;
+        this.currentTime = 0;
+    }
+
     initHTMLElements() {
         this.playBtn = this.player.querySelector('#play');
+
         this.playProgress = this.player.querySelector('#play-progress');
         this.progressBar = this.playProgress.querySelector('.rectangle-prev');
         this.progressCircle = this.playProgress.querySelector('.circle');
+
+        this.volumeProgress = this.player.querySelector('#volume-progress');
+        this.volumeBar = this.volumeProgress.querySelector('.rectangle-prev');
+        this.volumeCircle = this.volumeProgress.querySelector('.circle');
 
         this.currentSpan = this.player.querySelector('#current-span');
         this.endSpan = this.player.querySelector('#end-span');
@@ -21,14 +33,17 @@ class MusicPlayer {
             'play', () => this.setCurrentDuration()
         ); 
 
+        this.initVolume();
+        this.volumeDragging = new DragProgressBar(
+            this.audio, this.volumeProgress, this.volumeBar, this.volumeCircle,
+            'volume', () => this.setAudioLevel()
+        );
+
         this.initEventListeners();
     }
 
-    initStates() {
-        this.isFullscreen = false;
-        this.audioLevel = 1; 
-        this.isPlaying = false;
-        this.currentTime = 0;
+    initVolume() {
+        this.audio.volume = this.audioLevel;
     }
 
     initEventListeners() {
@@ -44,7 +59,14 @@ class MusicPlayer {
                 this.audio.play();
             }
         });
-        
+
+        this.volumeProgress.addEventListener('click', (e) => this.volumeDragging.handleProgressClick(e));
+        this.volumeProgress.addEventListener('mousedown', (e) => this.volumeDragging.startDragging(e));
+        document.addEventListener('mousemove', (e) => this.volumeDragging.handleDrag(e));
+        document.addEventListener('mouseup', (e) => {
+            this.volumeDragging.stopDragging(e)
+        });
+
         this.audio.addEventListener('timeupdate', () => this.playDragging.updateProgress());
     }
 
@@ -64,6 +86,10 @@ class MusicPlayer {
         
         this.currentTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
         this.currentSpan.innerHTML = this.currentTime;
+    }
+
+    setAudioLevel() {
+        this.audioLevel = this.audio.volume;
     }
 
     togglePlay() {
@@ -87,6 +113,10 @@ class DragProgressBar {
         this.isDragging = false;
         this.type = type;
         this.updateCallback = updateCallback;
+
+        if (this.type == 'volume') { 
+            this.updateProgress();
+        }
     }
 
     stopDragging(e) {
@@ -100,7 +130,7 @@ class DragProgressBar {
                 this.audio.currentTime = pos * this.audio.duration;
             }
             if (this.type == 'volume') {
-
+                this.audio.volume = Math.max(0, Math.min(1, pos));;
             }
         }
     }
@@ -112,6 +142,10 @@ class DragProgressBar {
             pos = Math.max(0, Math.min(1, pos));
             this.progress.style.width = `${pos * 100}%`;
             this.circle.style.left = `${pos * 100 - 1}%`;
+
+            if (this.type == 'volume') {
+                this.audio.volume = Math.max(0, Math.min(1, pos));
+            }
         }
     }
 
@@ -129,7 +163,8 @@ class DragProgressBar {
                 this.audio.currentTime = pos * this.audio.duration;
             }
             if (this.type == 'volume') {
-
+                this.audio.volume = Math.max(0, Math.min(1, pos));
+                this.updateProgress();
             }
         }
     }
@@ -140,12 +175,14 @@ class DragProgressBar {
             this.progress.style.width = `${progress}%`;
             this.circle.style.left = `${progress - 1}%`;
 
-            if (this.updateCallback) {
-                this.updateCallback();
-            }
+            this.updateCallback();
         }
-        if(!this.isDragging && this.type == 'volume') {
+        if(!this.isDragging && this.type == 'volume' && this.audio.volume) {
+            const volume = this.audio.volume * 100;
+            this.progress.style.width = `${volume}%`; 
+            this.circle.style.left = `${volume - 1}%`;
 
+            this.updateCallback();
         }
     }
 }

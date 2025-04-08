@@ -3,7 +3,7 @@
 html {
     --height-progress: 4px;
     --border-radius-progress: 20px;
-    --width-circle: 10px;
+    --width-circle: 12px;
 }
 
 .player {
@@ -110,9 +110,10 @@ html {
     }
 
     .rectangle {
+        position: relative;
         display: flex;
         align-items: center;
-        width: 280px;
+        width: clamp(200px, 30vw, 500px);
         height: var(--height-progress);
         border-radius: var(--border-radius-progress);
         background-color: white;
@@ -120,6 +121,7 @@ html {
         .rectangle-prev {
             position: absolute; 
             width: 0px;
+            left: 0;
             height: var(--height-progress);
             border-radius: var(--border-radius-progress);
             background-color: #1F68F2;
@@ -127,7 +129,8 @@ html {
 
         .circle {
             display: none;
-            position: absolute; 
+            position: absolute;
+            left: 0; 
             height: var(--width-circle);
             width: var(--width-circle);
             border-radius: 50%;
@@ -157,15 +160,17 @@ html {
     }
 
     .rectangle-volume {
+        position: relative;
         display: flex;
         align-items: center;
         background-color: white;
         height: var(--height-progress);
         border-radius: var(--border-radius-progress);
-        width: 50px;
+        width: clamp(10px, 5vw, 100px);
 
         .rectangle-prev {
             position: absolute;
+            left: 0;
             width: 0px;
             height: var(--height-progress);
             border-radius: var(--border-radius-progress);
@@ -173,6 +178,8 @@ html {
         }
 
         .circle {
+            position: absolute;
+            left: 0;
             display: none;
             cursor: pointer;
             height: var(--width-circle);
@@ -181,24 +188,15 @@ html {
             background-color: #1F68F2;
         }
     }
+}
 
-    .rectangle-volume:hover {
-        cursor: pointer;
-        .circle {
-            display: block;
-        }
+.rectangle-volume:hover {
+    cursor: pointer;
+    .circle {
+        display: block;
     }
 }
 
-.player__progress-container .rectangle {
-    position: relative;
-}
-
-.player__progress-container .rectangle-prev,
-.player__progress-container .circle {
-    position: absolute;
-    left: 0;
-}
 .rectangle:hover .circle,
 .rectangle.dragging .circle {
   display: block;
